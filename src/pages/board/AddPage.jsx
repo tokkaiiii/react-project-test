@@ -3,7 +3,7 @@ import React from 'react';
 function AddPage(props) {
   return (
       <div>
-        보드의 애드 페이지
+        보드 글 작성하기
       </div>
   );
 }
