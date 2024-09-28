@@ -8,7 +8,7 @@ import boardRouter from "./boardRouter.jsx";
 const Loading = <Box sx={{ display: 'flex' }}><CircularProgress /></Box>
 
 const Main = lazy(()=> import("../pages/MainPage.jsx"))
-const Board = lazy(()=> import("../pages/board/IndexPage.jsx"))
+const BoardIndex = lazy(()=> import("../pages/board/IndexPage.jsx"))
 
 const root = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const root = createBrowserRouter([
   },
   {
     path:'board',
-    element:<Suspense fallback={Loading}><Board/></Suspense>,
+    element:<Suspense fallback={Loading}><BoardIndex/></Suspense>,
     children: boardRouter()
   }
 ])

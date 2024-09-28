@@ -1,5 +1,5 @@
 import React from 'react';
-import SimpleMenu from "../components/menus/SimpleMenu.jsx";
+import SimpleMenu from "../components/menus/common/SimpleMenu.jsx";
 
 function SimpleLayout({children}) {
   return (

@@ -9,11 +9,11 @@ import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
-import NotificationMenu from "./NotificationMenu.jsx";
+import NotificationMenu from "../notification/NotificationMenu.jsx";
 import LeftSideMenu from "./LeftSideMenu.jsx";
 import SearchIcon from '@mui/icons-material/Search';
 import {InputAdornment} from "@mui/material";
-import AccountMenu from "./AccountMenu.jsx";
+import AccountMenu from "../member/AccountMenu.jsx";
 
 const SimpleMenu = () => {
 

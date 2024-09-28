@@ -5,6 +5,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import AddIcon from '@mui/icons-material/Add';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import {useNavigate} from "react-router-dom";
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
 function CustomSettingsMenu(props) {
   const { open, anchorEl, handleMenuClose, handleEnter, handleLeave } = props;
@@ -89,6 +90,19 @@ export default function CustomMenu() {
 
   return (
       <MenuList dense disablePadding>
+        <MenuItem
+            onClick={() => navigate('/board/add')}
+            component="button"
+            sx={{
+              justifyContent: 'flex-start',
+              width: '100%',
+            }}
+        >
+          <ListItemIcon>
+            <LibraryBooksIcon />
+          </ListItemIcon>
+          내 스터디로그
+        </MenuItem>
         <MenuItem
             onClick={() => navigate('/board/add')}
             component="button"
