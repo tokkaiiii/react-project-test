@@ -91,7 +91,7 @@ export default function CustomMenu() {
   return (
       <MenuList dense disablePadding>
         <MenuItem
-            onClick={() => navigate('/board/add')}
+            onClick={() => navigate('/board/listMy')}
             component="button"
             sx={{
               justifyContent: 'flex-start',
@@ -117,6 +117,7 @@ export default function CustomMenu() {
           새 글 작성
         </MenuItem>
         <MenuItem
+            onClick={()=>navigate('/board/scrap')}
             component="button"
             sx={{
               justifyContent: 'flex-start',

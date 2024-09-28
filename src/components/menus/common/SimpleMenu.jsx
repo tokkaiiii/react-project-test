@@ -14,12 +14,18 @@ import LeftSideMenu from "./LeftSideMenu.jsx";
 import SearchIcon from '@mui/icons-material/Search';
 import {InputAdornment} from "@mui/material";
 import AccountMenu from "../member/AccountMenu.jsx";
+import HomeIcon from '@mui/icons-material/Home';
+import {useNavigate} from "react-router-dom";
 
 const SimpleMenu = () => {
 
-  const [auth, setAuth] = React.useState(true);
+  const [auth, setAuth] = React.useState(false);
+  const navigate = useNavigate()
 
   const handleChange = (event) => {
+    if (event.target.checked){
+      navigate('/member/login')
+    }
     setAuth(event.target.checked);
   };
 
@@ -81,7 +87,8 @@ const SimpleMenu = () => {
               >
               </IconButton>
               <LeftSideMenu>
-                <MenuIcon style={{color: 'white'}}/>
+                {/*<MenuIcon style={{color: 'white'}}/>*/}
+                <HomeIcon style={{color: 'white'}}/>
               </LeftSideMenu>
               <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                 Study log

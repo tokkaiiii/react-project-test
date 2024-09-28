@@ -2,37 +2,26 @@ import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {useNavigate} from "react-router-dom";
 
 const options = [
-    '보기',
+  '보기',
+  '수정하기',
   '공유하기'
 ];
 
-
 const ITEM_HEIGHT = 48;
 
-export default function ShareMenu({id}) {
+export default function ShareMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const navigate = useNavigate()
-
   const handleClick = (event) => {
     console.log(`클릭함 ${event.currentTarget.value}`)
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = (event) => {
-    console.log(id)
     console.log(`클릭함 ${event.currentTarget.tabIndex}`)
     setAnchorEl(null);
-    if(event.currentTarget.tabIndex===0){
-    navigate(`/board/read/${id}`)
-    }
-
-
   };
 
   return (
@@ -43,11 +32,11 @@ export default function ShareMenu({id}) {
             aria-controls={open ? 'long-menu' : undefined}
             aria-expanded={open ? 'true' : undefined}
             aria-haspopup="true"
-            style={{color:'white'}}
+            style={{color: 'white'}}
             onClick={handleClick}
         >
           {/*<ShareIcon/>*/}
-          <MoreVertIcon />
+          <MoreVertIcon/>
         </IconButton>
         <Menu
             id="long-menu"
@@ -67,7 +56,8 @@ export default function ShareMenu({id}) {
             }}
         >
           {options.map((option) => (
-              <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+              <MenuItem key={option} selected={option === 'Pyxis'}
+                        onClick={handleClose}>
                 {option}
               </MenuItem>
           ))}

@@ -1,16 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SimpleLayout from "../../layouts/SimpleLayout.jsx";
-import {Link, Outlet} from "react-router-dom";
+import {Outlet, useLocation, useNavigate, useParams} from "react-router-dom";
 import Box from "@mui/material/Box";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import Tab from "@mui/material/Tab";
-import TabPanel from "@mui/lab/TabPanel";
-import ListBasicComponent from "../../components/board/ListBasicComponent.jsx";
 
 function IndexPage(props) {
 
-  const [value, setValue] = React.useState('1');
+  const location = useLocation()
+  const initState = () => {
+    console.log('인덱스페이지 접속')
+    console.log(location.pathname)
+    if(location.pathname === '/board/add'){
+      return '2'
+    }else if(location.pathname === '/board/scrap'){
+      return '3'
+    }else {
+      return '1'
+    }
+  }
+
+  const navigate = useNavigate()
+
+  const [value, setValue] = useState(initState);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -23,14 +36,11 @@ function IndexPage(props) {
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <TabList onChange={handleChange} aria-label="lab API tabs example">
-                 <Link to={'listMy'}><Tab label="내 스터디" value="1" /></Link>
-                  <Link to={'add'}><Tab label="글 작성하기" value="2" /></Link>
-                  <Link to={'scrap'}><Tab label="스크랩" value="3" /></Link>
+                 <Tab label="내 스터디" value="1" onClick={()=>navigate("listMy")} />
+                  <Tab label="글 작성하기" value="2" onClick={()=>navigate("add")} />
+                  <Tab label="스크랩" value="3" onClick={()=>navigate("scrap")} />
                 </TabList>
               </Box>
-              {/*<TabPanel value="1">내가 작성한 보드</TabPanel>
-              <TabPanel value="2">글쓰기 컴포넌트</TabPanel>
-              <TabPanel value="3">나의 스크랩(공유?)</TabPanel>*/}
             </TabContext>
           </Box>
         </div>
