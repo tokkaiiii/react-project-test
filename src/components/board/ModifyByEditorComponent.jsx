@@ -77,7 +77,7 @@ function ModifyByEditorComponent() {
       // Prism.js로 코드 하이라이팅
       Prism.highlightAll();
     }
-  }, [contentForModify]);
+  }, [contentForModify,content]);
 
   return (
       <div>
