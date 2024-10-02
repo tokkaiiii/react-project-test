@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Editor from '@toast-ui/editor';
-import '@toast-ui/editor/dist/toastui-editor.css'; // 에디터 CSS 임포트
+import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
-import {useSelector} from "react-redux";
+import 'prismjs/themes/prism.css'; // Prism CSS 임포트
+import Prism from 'prismjs'; // Prism JS 임포트
+import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
@@ -10,13 +12,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
 import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share"; // 뷰어 CSS 임포트
+import ShareIcon from "@mui/icons-material/Share";
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import useCustomMove from "../../hooks/useCustomMove.jsx";
 
-const ViewerComponent = ({content}) => {
-
+const ViewerComponent = ({ content }) => {
   const actions = [
     { icon: <FileCopyIcon />, name: '복사하기' },
     { icon: <SaveIcon />, name: '저장하기' },
@@ -26,9 +26,7 @@ const ViewerComponent = ({content}) => {
 
   const viewerRef = useRef(null);
   const viewerInstance = useRef(null); // Viewer 인스턴스를 위한 ref 추가
-
-  const {moveToPath} = useCustomMove()
-
+  const { moveToPath } = useCustomMove();
 
   useEffect(() => {
     if (viewerRef.current) {
@@ -49,6 +47,13 @@ const ViewerComponent = ({content}) => {
     };
   }, [content]); // content가 변경될 때마다 Viewer 업데이트
 
+  useEffect(() => {
+    if (viewerInstance.current) {
+      // Prism 하이라이팅 적용
+      Prism.highlightAll();
+    }
+  }, [content]); // content가 변경될 때마다 하이라이팅 적용
+
   return (
       <Box sx={{ position: 'relative', height: '100vh' }}>
         <div ref={viewerRef} style={{ flex: 1 }}></div>
@@ -64,18 +69,16 @@ const ViewerComponent = ({content}) => {
                     tooltipTitle={action.name}
                     onClick={() => {
                       console.log(`클릭함 ${action.name}`)
-                      if(action.name === '수정하기'){
-                        moveToPath('/board/modifyByEditor/1')
+                      if (action.name === '수정하기') {
+                        moveToPath('/board/modifyByEditor/1');
                       }
-                    }
-                }
+                    }}
                 />
             ))}
           </SpeedDial>
         </Box>
       </Box>
-
-  ) // Viewer가 렌더링될 div
+  ); // Viewer가 렌더링될 div
 };
 
 export default ViewerComponent;

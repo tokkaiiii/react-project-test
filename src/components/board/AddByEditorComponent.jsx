@@ -7,6 +7,9 @@ import Button from "@mui/material/Button";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import boardSlice, {add} from "../../slices/boardSlice.jsx"; // axios 추가
+import Prism from 'prismjs';
+import 'prismjs/themes/prism.css';
+import 'prismjs/components/prism-javascript.min.js';
 
 function AddByEditorComponent() {
   const editorRef = useRef(null);
@@ -67,6 +70,13 @@ function AddByEditorComponent() {
     dispatch(add(content))
     navigate({pathname:"../viewer/1"})
   };
+
+  useEffect(() => {
+    if (content) {
+      // Prism.js로 코드 하이라이팅
+      Prism.highlightAll();
+    }
+  }, [content]);
 
   return (
       <div>
