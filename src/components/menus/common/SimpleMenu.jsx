@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -16,17 +15,28 @@ import {InputAdornment} from "@mui/material";
 import AccountMenu from "../member/AccountMenu.jsx";
 import HomeIcon from '@mui/icons-material/Home';
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
+import useCustomLogin from "../../../hooks/useCustomLogin.jsx";
 
 const SimpleMenu = () => {
 
-  const [auth, setAuth] = React.useState(false);
+  const loginState = useSelector(state => state.loginSlice)
+
   const navigate = useNavigate()
+
+  const {doLogout,moveToPath} = useCustomLogin()
+
+  const handleLogout = () => {
+    doLogout()
+    alert('로그아웃 완료')
+    moveToPath('/')
+  }
 
   const handleChange = (event) => {
     if (event.target.checked){
       navigate('/member/login')
     }
-    setAuth(event.target.checked);
+    console.log(loginState)
   };
 
   return (
@@ -65,16 +75,31 @@ const SimpleMenu = () => {
         </div>
         <Box sx={{flexGrow: 1}}>
           <FormGroup>
-            <FormControlLabel
+            {
+              loginState.email?
+              <FormControlLabel
                 control={
                   <Switch
-                      checked={auth}
+                      checked={true}
                       onChange={handleChange}
+                      onClick={handleLogout}
                       aria-label="login switch"
                   />
                 }
-                label={auth ? 'Logout' : 'Login'}
+                label={'Logout' }
             />
+            :
+                  <FormControlLabel
+                      control={
+                        <Switch
+                            checked={false}
+                            onChange={handleChange}
+                            aria-label="login switch"
+                        />
+                      }
+                      label={'Login'}
+                  />
+            }
           </FormGroup>
           <AppBar position="static">
             <Toolbar>
@@ -93,7 +118,7 @@ const SimpleMenu = () => {
               <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                 Study log
               </Typography>
-              {auth && (
+              {loginState.email && (
                   <>
                     <NotificationMenu/>
                     <AccountMenu/>

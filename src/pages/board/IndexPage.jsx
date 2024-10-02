@@ -10,8 +10,6 @@ function IndexPage(props) {
 
   const location = useLocation()
   const initState = () => {
-    console.log('인덱스페이지 접속')
-    console.log(location.pathname)
     if(location.pathname === '/board/add'){
       return '2'
     }else if(location.pathname === '/board/scrap'){
@@ -39,6 +37,8 @@ function IndexPage(props) {
                  <Tab label="내 스터디" value="1" onClick={()=>navigate("listMy")} />
                   <Tab label="글 작성하기" value="2" onClick={()=>navigate("add")} />
                   <Tab label="스크랩" value="3" onClick={()=>navigate("scrap")} />
+                  <Tab label="토스트 유아이 에디터 버전" value="3" onClick={()=>navigate("addByEditor")} />
+                  <Tab label="토스트 유아이 뷰어 에디터 버전" value="3" onClick={()=>navigate("viewer/1")} />
                 </TabList>
               </Box>
             </TabContext>

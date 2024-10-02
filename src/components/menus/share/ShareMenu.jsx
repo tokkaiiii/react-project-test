@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 
 const options = [
     '보기',
-  '공유하기'
+  '스크랩'
 ];
 
 

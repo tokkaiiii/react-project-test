@@ -7,7 +7,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 const options = [
   '보기',
   '수정하기',
-  '공유하기'
+  '스크랩'
 ];
 
 const ITEM_HEIGHT = 48;
@@ -16,13 +16,14 @@ export default function ShareMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
-    console.log(`클릭함 ${event.currentTarget.value}`)
+    console.log(`클릭함 ${event.currentTarget.value} `)
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = (event) => {
-    console.log(`클릭함 ${event.currentTarget.tabIndex}`)
+  const handleClose = (option) => {
+    console.log(`클릭함 ${option}`)
     setAnchorEl(null);
   };
+
 
   return (
       <div>
@@ -57,7 +58,7 @@ export default function ShareMenu() {
         >
           {options.map((option) => (
               <MenuItem key={option} selected={option === 'Pyxis'}
-                        onClick={handleClose}>
+                        onClick={() => handleClose(option)}>
                 {option}
               </MenuItem>
           ))}

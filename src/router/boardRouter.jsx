@@ -9,6 +9,8 @@ const BoardAdd = lazy(()=> import("../pages/board/AddPage.jsx"))
 const BoardListMy = lazy(()=> import("../pages/board/list/ListMyPage.jsx"))
 const BoardScrap = lazy(()=> import("../pages/board/ScrapPage.jsx"))
 const BoardRead = lazy(()=> import("../pages/board/ReadPage.jsx"))
+const BoardAddByEditor = lazy(()=> import("../pages/board/AddByEditorPage.jsx"))
+const BoardView = lazy(()=>import("../pages/board/ViewerPage.jsx"))
 
 const BoardRouter = () => {
   return [
@@ -32,6 +34,16 @@ const BoardRouter = () => {
     {
       path: 'read/:id',
       element: <Suspense fallback={Loading}><BoardRead/></Suspense>
+    },
+      //그냥 해본것
+    {
+      path: 'addByEditor',
+      element: <Suspense fallback={Loading}><BoardAddByEditor/></Suspense>
+    }
+    ,
+    {
+      path: 'viewer/:id',
+      element: <Suspense fallback={Loading}><BoardView/></Suspense>
     }
   ]
 }

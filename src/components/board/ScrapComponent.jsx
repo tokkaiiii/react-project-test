@@ -1,23 +1,18 @@
 import React from 'react';
-import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ListSubheader from "@mui/material/ListSubheader";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-import ShareMyMenu from "../../menus/share/ShareMyMenu.jsx";
-import useCustomLogin from "../../../hooks/useCustomLogin.jsx";
+import ShareMenu from "../menus/share/ShareMenu.jsx";
+import ImageList from "@mui/material/ImageList";
+import BookmarkIcon from '@mui/icons-material/Bookmark'; // 북마크 아이콘 가져오기
+import IconButton from '@mui/material/IconButton'; // IconButton 가져오기
+import StarIcon from '@mui/icons-material/Star';
 
-function ListMyComponent(props) {
-
-  const {isLogin, moveToLoginReturn} = useCustomLogin()
-
-  if(!isLogin){
-    return moveToLoginReturn()
-  }
-
+function ScrapComponent() {
   return (
-      <ImageList sx={{width: 1300, height: 650}}>
+      <ImageList sx={{ width: 1300, height: 650 }}>
         <ImageListItem key="Subheader" cols={2}>
-          <ListSubheader component="div">나의 게시물임</ListSubheader>
+          <ListSubheader component="div">나의 스크랩 보드</ListSubheader>
         </ImageListItem>
         {itemData.map((item) => (
             <ImageListItem key={item.img}>
@@ -30,12 +25,18 @@ function ListMyComponent(props) {
               <ImageListItemBar
                   title={item.title}
                   subtitle={item.author}
-                  actionIcon={<ShareMyMenu id={item.id}/>}
+                  actionIcon={
+                    <div>
+                      <IconButton aria-label="bookmark" style={{ color: 'white' }}>
+                        <StarIcon />
+                      </IconButton>
+                      <ShareMenu id={item.id} />
+                    </div>
+                  }
               />
             </ImageListItem>
         ))}
       </ImageList>
-
   );
 }
 
@@ -125,4 +126,4 @@ const itemData = [
   },
 ];
 
-export default ListMyComponent;
+export default ScrapComponent;

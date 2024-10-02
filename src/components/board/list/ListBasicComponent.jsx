@@ -4,18 +4,15 @@ import ListSubheader from "@mui/material/ListSubheader";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ShareMenu from "../../menus/share/ShareMenu.jsx";
 import ImageList from "@mui/material/ImageList";
-import {useSearchParams} from "react-router-dom";
 
 function ListBasicComponent() {
 
-  const [queryParams] = useSearchParams()
-  const page = queryParams.get('page') ? queryParams.get('page') : 1
-  const size = queryParams.get('size') ? queryParams.get('size') : 10
 
   return (
-      <ImageList sx={{ width: 1300, height: 650 }}>
+
+      <ImageList sx={{width: 1300, height: 650}}>
         <ImageListItem key="Subheader" cols={2}>
-          <ListSubheader component="div">트렌딩 보드 {page} {size}</ListSubheader>
+          <ListSubheader component="div">트렌딩 보드 </ListSubheader>
         </ImageListItem>
         {itemData.map((item) => (
             <ImageListItem key={item.img}>
@@ -28,13 +25,14 @@ function ListBasicComponent() {
               <ImageListItemBar
                   title={item.title}
                   subtitle={item.author}
-                  actionIcon={<ShareMenu id={item.id}/>}
+                  actionIcon={<ShareMenu item={item.id}/>}
               />
             </ImageListItem>
         ))}
       </ImageList>
   );
 }
+
 const itemData = [
   {
     id: 1,
