@@ -76,7 +76,7 @@ const SimpleMenu = () => {
         <Box sx={{flexGrow: 1}}>
           <FormGroup>
             {
-              loginState.email?
+              // loginState.email?
               <FormControlLabel
                 control={
                   <Switch
@@ -88,7 +88,7 @@ const SimpleMenu = () => {
                 }
                 label={'Logout' }
             />
-            :
+           /* :
                   <FormControlLabel
                       control={
                         <Switch
@@ -98,7 +98,7 @@ const SimpleMenu = () => {
                         />
                       }
                       label={'Login'}
-                  />
+                  />*/
             }
           </FormGroup>
           <AppBar position="static">
@@ -118,7 +118,9 @@ const SimpleMenu = () => {
               <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                 Study log
               </Typography>
-              {loginState.email && (
+              {
+                // loginState.email &&
+                  (
                   <>
                     <NotificationMenu/>
                     <AccountMenu/>

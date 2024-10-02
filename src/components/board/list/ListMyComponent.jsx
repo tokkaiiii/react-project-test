@@ -10,9 +10,9 @@ function ListMyComponent(props) {
 
   const {isLogin, moveToLoginReturn} = useCustomLogin()
 
-  if(!isLogin){
+  /*if(!isLogin){
     return moveToLoginReturn()
-  }
+  }*/
 
   return (
       <ImageList sx={{width: 1300, height: 650}}>
