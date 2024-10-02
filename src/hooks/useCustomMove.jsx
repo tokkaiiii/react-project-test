@@ -16,7 +16,11 @@ const useCustomMove = () => {
     navigate({pathname: `../modify/${id}`})
   }
 
-  return {moveToList, moveToRead, moveToModify}
+  const moveToPath = (path) => {
+    navigate({pathname:`${path}`})
+  }
+
+  return {moveToList, moveToRead, moveToModify, moveToPath}
 }
 
 export default useCustomMove

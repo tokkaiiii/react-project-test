@@ -39,6 +39,7 @@ function IndexPage(props) {
                   <Tab label="스크랩" value="3" onClick={()=>navigate("scrap")} />
                   <Tab label="토스트 유아이 에디터 버전" value="3" onClick={()=>navigate("addByEditor")} />
                   <Tab label="토스트 유아이 뷰어 에디터 버전" value="3" onClick={()=>navigate("viewer/1")} />
+                  <Tab label="토스트 유아이 수정 에디터 버전" value="3" onClick={()=>navigate("modifyByEditor/1")} />
                 </TabList>
               </Box>
             </TabContext>

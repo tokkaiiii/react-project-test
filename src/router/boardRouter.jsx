@@ -10,6 +10,7 @@ const BoardListMy = lazy(()=> import("../pages/board/list/ListMyPage.jsx"))
 const BoardScrap = lazy(()=> import("../pages/board/ScrapPage.jsx"))
 const BoardRead = lazy(()=> import("../pages/board/ReadPage.jsx"))
 const BoardAddByEditor = lazy(()=> import("../pages/board/AddByEditorPage.jsx"))
+const BoardModifyByEditor = lazy(()=> import("../pages/board/ModifyByEditorPage.jsx"))
 const BoardView = lazy(()=>import("../pages/board/ViewerPage.jsx"))
 
 const BoardRouter = () => {
@@ -44,6 +45,11 @@ const BoardRouter = () => {
     {
       path: 'viewer/:id',
       element: <Suspense fallback={Loading}><BoardView/></Suspense>
+    }
+    ,
+    {
+      path: 'modifyByEditor/:id',
+      element: <Suspense fallback={Loading}><BoardModifyByEditor/></Suspense>
     }
   ]
 }
