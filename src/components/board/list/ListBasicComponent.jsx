@@ -25,7 +25,7 @@ function ListBasicComponent() {
               <ImageListItemBar
                   title={item.title}
                   subtitle={item.author}
-                  actionIcon={<ShareMenu item={item.id}/>}
+                  actionIcon={<ShareMenu id={item.id}/>}
               />
             </ImageListItem>
         ))}
