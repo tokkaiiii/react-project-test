@@ -3,6 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {useNavigate} from "react-router-dom";
 
 const options = [
   '보기',
@@ -12,18 +13,25 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
-export default function ShareMenu() {
+export default function ShareMenu({id}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    console.log(`클릭함 ${event.currentTarget.value} `)
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = (option) => {
-    console.log(`클릭함 ${option}`)
-    setAnchorEl(null);
-  };
+    const navigate = useNavigate(); // useNavigate 훅 사용
 
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = (option) => {
+        console.log(`클릭함 ${option}`);
+        setAnchorEl(null);
+
+        if (option === '보기') {
+            navigate(`../${id}`);
+        } else if (option === '수정하기') {
+            navigate(`../modify/${id}`);
+        }
+    };
 
   return (
       <div>

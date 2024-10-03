@@ -1,13 +1,14 @@
 import React from 'react';
-import ModifyByEditorComponent
-  from "../../components/board/ModifyByEditorComponent.jsx";
+import ModifyByEditorComponent from "../../components/board/ModifyByEditorComponent.jsx";
+import {useParams} from "react-router-dom";
 
-function ModifyByEditorPage(props) {
-  return (
-      <div>
-        <ModifyByEditorComponent/>
-      </div>
-  );
+function ModifyByEditorPage() {
+    const {id} = useParams();
+    return (
+        <div>
+            <ModifyByEditorComponent/>
+        </div>
+    );
 }
 
 export default ModifyByEditorPage;
