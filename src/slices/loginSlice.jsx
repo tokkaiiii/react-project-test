@@ -31,7 +31,13 @@ const loginSlice = createSlice({
       if(!payload.ERROR){
         setCookie("member",JSON.stringify(payload))
       }
-      return payload
+      return {
+        email:payload.email,
+        fullName:payload.fullName,
+        roles:payload.roles,
+        userId:payload.userId,
+        username:payload.username
+      }
     })
     .addCase(loginPostAsync.pending,(state,action)=>{
       console.log('pending')
