@@ -5,7 +5,6 @@ import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import Button from "@mui/material/Button";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {add} from "../../slices/boardSlice.jsx"; // axios 추가
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-javascript.min.js';
@@ -67,16 +66,13 @@ function AddByEditorComponent() {
 
     // 제출 핸들러
     const handleSubmit = () => {
-        dispatch(add(content))
-
         const formData = new FormData();
         // TODO: 회원 ID 연결
         formData.append('userId', 1);
         formData.append('content', content);
 
         postAdd(formData).then(response => {
-            console.log(response)
-            navigate({pathname: response.headers.location});
+            navigate(`../${response.headers.location.split('/').pop()}`);
         })
             .catch((error) => {
                 console.log(error);
